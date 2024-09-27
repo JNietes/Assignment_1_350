@@ -31,5 +31,5 @@ WHERE e.salary > 9000
 UNION
 SELECT e.employee_id, e.last_name
 FROM employees e
-JOIN countries c ON c.country_id = c.country_id
+JOIN countries c ON e.country_id = c.country_id
 WHERE c.country_id = 'Germany'
