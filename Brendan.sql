@@ -18,12 +18,10 @@ WHERE d.department_name = 'Finance'
 SELECT e.first_name, e.last_name, e.employee_id
 FROM employees e
 EXCEPT
-select e1.first_name, e1.last_name, e1.employee_id
-from employees e1
-join employees e2
-	on e1.manager_id = e2.manager_id
-where e2.first_name = 'Nancy'
-and e2.last_name = 'Greenberg'
+SELECT e1.first_name, e1.last_name, e1.employee_id
+FROM employees e1
+JOIN employees e2 ON e1.manager_id = e2.manager_id
+WHERE e2.first_name = 'Nancy' AND e2.last_name = 'Greenberg'
 
 /* Promblem 12 */
 /* Author: Brendan Grenoble*/
