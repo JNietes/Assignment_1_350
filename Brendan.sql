@@ -17,11 +17,13 @@ WHERE d.department_name = 'Finance'
 /* Author: Brendan Grenoble */
 SELECT e.first_name, e.last_name, e.employee_id
 FROM employees e
-MINUS
-SELECT e.first_name, e.last_name, e.employee_id
-FROM employees e
-JOIN managers m ON e.manager_id = m.manager_id
-WHERE m.manager_id != 'Nancy Greenburg'
+EXCEPT
+select e1.first_name, e1.last_name, e1.employee_id
+from employees e1
+join employees e2
+	on e1.manager_id = e2.manager_id
+where e2.first_name = 'Nancy'
+and e2.last_name = 'Greenberg'
 
 /* Promblem 12 */
 /* Author: Brendan Grenoble*/
@@ -31,5 +33,7 @@ WHERE e.salary > 9000
 UNION
 SELECT e.employee_id, e.last_name
 FROM employees e
-JOIN countries c ON e.country_id = c.country_id
-WHERE c.country_id = 'Germany'
+JOIN departments d ON e.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+JOIN countries c ON l.country_id = c.country_id
+WHERE c.country_id = 'US'
